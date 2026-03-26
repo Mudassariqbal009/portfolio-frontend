@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CloudOps Agency</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  font-family:'Inter',sans-serif;
+  color:#0f172a;
+  overflow-x:hidden;
+}
+
+/* BACKGROUND */
+.bg{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:linear-gradient(120deg,#eef2ff,#f0f9ff,#fef9c3);
+  z-index:-3;
+}
+
+.blob{
+  position:absolute;
+  width:400px;
+  height:400px;
+  border-radius:50%;
+  filter:blur(100px);
+  opacity:0.5;
+  animation:float 15s infinite ease-in-out;
+}
+
+.b1{background:#60a5fa;top:10%;left:10%;}
+.b2{background:#34d399;top:60%;left:70%;animation-delay:3s;}
+.b3{background:#fbbf24;top:80%;left:20%;animation-delay:6s;}
+
+@keyframes float{
+  0%{transform:translate(0,0);}
+  50%{transform:translate(80px,-80px);}
+  100%{transform:translate(0,0);}
+}
+
+/* NAV */
+nav{
+  display:flex;
+  justify-content:space-between;
+  padding:20px 60px;
+  position:fixed;
+  width:100%;
+  background:rgba(255,255,255,0.7);
+  backdrop-filter:blur(12px);
+  z-index:10;
+}
+
+nav a{
+  margin-left:20px;
+  text-decoration:none;
+  color:#334155;
+}
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:64px;
+  font-weight:700;
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.8s;
+}
+
+.hero p{
+  margin-top:15px;
+  font-size:20px;
+  color:#64748b;
+  opacity:0;
+  transform:translateY(40px);
+  transition:0.8s;
+}
+
+.btn{
+  margin-top:25px;
+  padding:14px 28px;
+  border-radius:12px;
+  background:#2563eb;
+  color:white;
+  text-decoration:none;
+  font-weight:600;
+  transition:0.3s;
+}
+
+.btn:hover{
+  transform:scale(1.05);
+}
+
+/* SECTION */
+.section{
+  max-width:1100px;
+  margin:auto;
+  padding:120px 20px;
+  opacity:0;
+  transform:translateY(60px);
+  transition:0.8s;
+}
+
+.section.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+h2{
+  font-size:34px;
+  margin-bottom:30px;
+}
+
+/* GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+/* CARD */
+.card{
+  background:white;
+  padding:25px;
+  border-radius:16px;
+  transition:0.4s;
+}
+
+.card:hover{
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:0 20px 40px rgba(0,0,0,0.12);
+}
+
+/* CONTACT */
+.contact{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.box{
+  flex:1;
+  background:white;
+  padding:20px;
+  border-radius:12px;
+}
+
+form{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+input,textarea{
+  padding:12px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+button{
+  padding:12px;
+  background:#2563eb;
+  color:white;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+/* SUCCESS MSG */
+#successMsg{
+  display:none;
+  color:green;
+  margin-top:10px;
+}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  padding:40px;
+  color:#64748b;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<!-- BACKGROUND -->
+<div class="bg"></div>
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
+
+<!-- NAV -->
+<nav>
+  <b>CloudOps</b>
+  <div>
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1 id="heroTitle">DevOps That Scales</h1>
+  <p id="heroText">Cloud • Automation • Kubernetes • CI/CD</p>
+  <a href="#contact" class="btn">Get Started</a>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="section">
+  <h2>Services</h2>
+
+  <div class="grid">
+    <div class="card"><h3>☁️ Cloud Infrastructure</h3><p>AWS / GCP scalable setup</p></div>
+    <div class="card"><h3>🐳 Docker & Kubernetes</h3><p>Container orchestration</p></div>
+    <div class="card"><h3>🔄 CI/CD</h3><p>Automated pipelines</p></div>
+    <div class="card"><h3>📊 Monitoring</h3><p>Prometheus & Grafana</p></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <h2>Projects</h2>
+
+  <div class="grid">
+    <div class="card">CI/CD Pipeline System</div>
+    <div class="card">Cloud Migration</div>
+    <div class="card">Monitoring Stack</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <h2>Contact</h2>
+
+  <div class="contact">
+
+    <div class="box">
+      <p>📞 +92 313 7987137</p>
+      <p>📧 mudassariqbal835@gmail.com</p>
+    </div>
+
+    <form id="contactForm" action="https://formspree.io/f/xykbgoqj" method="POST">
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="message" placeholder="Message" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+
+  </div>
+
+  <p id="successMsg">✅ Message sent successfully</p>
+
+</section>
+
+<footer>
+  © 2026 CloudOps Agency
+</footer>
+
+<script>
+
+/* HERO ANIMATION */
+window.onload = () => {
+  document.getElementById("heroTitle").style.opacity = 1;
+  document.getElementById("heroTitle").style.transform = "translateY(0)";
+  
+  setTimeout(()=>{
+    document.getElementById("heroText").style.opacity = 1;
+    document.getElementById("heroText").style.transform = "translateY(0)";
+  },300);
+};
+
+/* SCROLL REVEAL */
+const sections = document.querySelectorAll(".section");
+
+window.addEventListener("scroll", ()=>{
+  sections.forEach(sec=>{
+    if(sec.getBoundingClientRect().top < window.innerHeight - 100){
+      sec.classList.add("show");
+    }
+  });
+});
+
+/* FORM FIX */
+const form = document.getElementById("contactForm");
+const msg = document.getElementById("successMsg");
+
+form.addEventListener("submit", async (e)=>{
+  e.preventDefault();
+
+  const data = new FormData(form);
+
+  const res = await fetch(form.action,{
+    method:"POST",
+    body:data,
+    headers:{'Accept':'application/json'}
+  });
+
+  if(res.ok){
+    msg.style.display="block";
+    form.reset();
+  }else{
+    alert("Error sending message");
+  }
+});
+
+</script>
+
+</body>
+</html>
