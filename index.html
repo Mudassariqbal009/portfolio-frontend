@@ -95,10 +95,6 @@
 <!-- ── BACKGROUND ──────────────────────────────────────────── -->
 <canvas id="canvas-bg" aria-hidden="true"></canvas>
 <div id="cursor-glow" aria-hidden="true"></div>
-<div class="bg-gradient"></div>
-<div class="blob blob-1"></div>
-<div class="blob blob-2"></div>
-<div class="blob blob-3"></div>
 
 <!-- ── NAVIGATION ──────────────────────────────────────────── -->
 <nav class="nav" role="navigation" aria-label="Main navigation">
@@ -116,7 +112,6 @@
     <a href="#services"        role="menuitem">Services</a>
     <a href="#about"           role="menuitem">About</a>
     <a href="#projects"        role="menuitem">Projects</a>
-    <a href="#pricing"         role="menuitem">Pricing</a>
     <a href="#contact"         role="menuitem">Contact</a>
   </div>
 
@@ -137,7 +132,6 @@
   <a href="#services" role="menuitem">Services</a>
   <a href="#about"    role="menuitem">About</a>
   <a href="#projects" role="menuitem">Projects</a>
-  <a href="#pricing"  role="menuitem">Pricing</a>
   <a href="#contact"  role="menuitem">Contact</a>
   <a href="#contact"  class="btn-nav">Get Started</a>
 </div>
@@ -511,74 +505,6 @@
 </section>
 
 <!-- ══════════════════════════════════════════════════════════
-     PRICING
-══════════════════════════════════════════════════════════════ -->
-<section id="pricing" class="section">
-  <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto 48px;">
-    <p class="section-tag">Pricing</p>
-    <h2 class="section-title">Transparent Engagement Models</h2>
-    <p class="section-sub" style="margin:0 auto;">No surprises. Choose the model that fits your team's needs.</p>
-  </div>
-
-  <div class="grid-3">
-
-    <div class="pricing-card reveal reveal-delay-1">
-      <h3>Starter</h3>
-      <p style="font-size:14px;color:var(--clr-text-2);margin-top:4px;">For early-stage startups</p>
-      <div class="price">$2,500<span>/mo</span></div>
-      <p class="pricing-desc">Get your cloud foundation right from day one.</p>
-      <ul class="pricing-features">
-        <li>Up to 2 cloud environments</li>
-        <li>CI/CD pipeline setup (1 repo)</li>
-        <li>Basic monitoring & alerting</li>
-        <li>Terraform IaC for all resources</li>
-        <li>Monthly architecture review</li>
-        <li>Email support (48h response)</li>
-      </ul>
-      <button class="btn-pricing" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
-    </div>
-
-    <div class="pricing-card featured reveal reveal-delay-2">
-      <span class="pricing-badge">Most Popular</span>
-      <h3>Growth</h3>
-      <p style="font-size:14px;color:var(--clr-text-2);margin-top:4px;">For scaling engineering teams</p>
-      <div class="price">$6,000<span>/mo</span></div>
-      <p class="pricing-desc">Full DevOps partnership for companies in growth mode.</p>
-      <ul class="pricing-features">
-        <li>Unlimited environments</li>
-        <li>Full CI/CD for all repositories</li>
-        <li>Production Kubernetes cluster</li>
-        <li>Full observability stack</li>
-        <li>Security hardening & scanning</li>
-        <li>Weekly sync calls</li>
-        <li>Slack support (4h response)</li>
-        <li>On-call escalation support</li>
-      </ul>
-      <button class="btn-pricing" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
-    </div>
-
-    <div class="pricing-card reveal reveal-delay-3">
-      <h3>Enterprise</h3>
-      <p style="font-size:14px;color:var(--clr-text-2);margin-top:4px;">For large-scale operations</p>
-      <div class="price" style="font-size:32px;">Custom</div>
-      <p class="pricing-desc">Bespoke engagement for complex infrastructure needs.</p>
-      <ul class="pricing-features">
-        <li>Dedicated CloudOps engineer</li>
-        <li>Multi-cloud architecture</li>
-        <li>Platform Engineering (IDP)</li>
-        <li>Compliance automation (SOC2)</li>
-        <li>FinOps & cost optimization</li>
-        <li>24/7 on-call coverage</li>
-        <li>SLA-backed response times</li>
-        <li>Quarterly executive reviews</li>
-      </ul>
-      <button class="btn-pricing" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Contact Us</button>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════════════════════════
      CERTIFICATIONS
 ══════════════════════════════════════════════════════════════ -->
 <section class="section" style="padding-top:0;">
@@ -776,7 +702,6 @@
         <ul>
           <li><a href="#about">About</a></li>
           <li><a href="#projects">Case Studies</a></li>
-          <li><a href="#pricing">Pricing</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
