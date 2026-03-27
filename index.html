@@ -69,7 +69,25 @@
 
 <body>
 
+<!-- ── PRELOADER ───────────────────────────────────────────── -->
+<div id="preloader" role="status" aria-label="Loading">
+  <div class="pre-logo">
+    <div class="pre-logo-icon">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M7 19.5C5.07 19.5 3.5 17.93 3.5 16S5.07 12.5 7 12.5c.3 0 .6.04.88.1C8.5 10.7 10.12 9.5 12 9.5c.87 0 1.67.28 2.32.74C15.07 9.1 16.24 8.5 17.56 8.5c2.18 0 3.94 1.76 3.94 3.94 0 .2-.02.4-.05.59C23.5 13.42 25 15.08 25 17.06 25 19.24 23.24 21 21.06 21H7v-1.5z" fill="white"/>
+        <rect x="14" y="19" width="2" height="7" rx="1" fill="white"/>
+        <rect x="10" y="23" width="10" height="2" rx="1" fill="white"/>
+      </svg>
+    </div>
+    <div class="pre-logo-text">Cloud<span>Ops</span></div>
+  </div>
+  <p class="pre-tagline">Building Infrastructure That Scales</p>
+  <div class="pre-bar-wrap"><div class="pre-bar"></div></div>
+</div>
+
 <!-- ── BACKGROUND ──────────────────────────────────────────── -->
+<canvas id="canvas-bg" aria-hidden="true"></canvas>
+<div id="cursor-glow" aria-hidden="true"></div>
 <div class="bg-gradient"></div>
 <div class="blob blob-1"></div>
 <div class="blob blob-2"></div>
@@ -126,7 +144,7 @@
     Trusted by 40+ engineering teams worldwide
   </div>
 
-  <h1>DevOps Infrastructure<br>That <span class="accent">Scales</span> With You</h1>
+  <h1>DevOps Infrastructure<br>That <span class="word-cycle">Scales</span> With You</h1>
 
   <p class="hero-sub">
     We design, build, and operate enterprise cloud infrastructure — so your team ships faster, fails safer, and scales smarter.
@@ -141,6 +159,23 @@
       View Case Studies
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
     </a>
+  </div>
+
+  <!-- floating tech chips -->
+  <div class="hero-chips" aria-hidden="true">
+    <span class="hero-chip" style="--dur:4s;  --delay:0s">  <span class="chip-dot" style="background:#FF9900"></span>AWS</span>
+    <span class="hero-chip" style="--dur:5s;  --delay:.4s"> <span class="chip-dot" style="background:#326CE5"></span>Kubernetes</span>
+    <span class="hero-chip" style="--dur:4.5s;--delay:.8s"> <span class="chip-dot" style="background:#2496ED"></span>Docker</span>
+    <span class="hero-chip" style="--dur:3.8s;--delay:1.2s"><span class="chip-dot" style="background:#7B42BC"></span>Terraform</span>
+    <span class="hero-chip" style="--dur:4.2s;--delay:.2s"> <span class="chip-dot" style="background:#E6522C"></span>Prometheus</span>
+    <span class="hero-chip" style="--dur:5.2s;--delay:.6s"> <span class="chip-dot" style="background:#2088FF"></span>GitHub Actions</span>
+    <span class="hero-chip" style="--dur:4.7s;--delay:1s">  <span class="chip-dot" style="background:#F46800"></span>Grafana</span>
+  </div>
+
+  <!-- scroll indicator -->
+  <div class="scroll-indicator" aria-hidden="true">
+    <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+    <span>Scroll</span>
   </div>
 </section>
 
@@ -183,7 +218,7 @@
      SERVICES
 ══════════════════════════════════════════════════════════════ -->
 <section id="services" class="section">
-  <div class="reveal">
+  <div class="reveal-left">
     <p class="section-tag">What We Do</p>
     <h2 class="section-title">End-to-End Cloud & DevOps Services</h2>
     <p class="section-sub">From infrastructure design to 24/7 operations — we cover the full DevOps lifecycle.</p>
@@ -266,7 +301,7 @@
 <section id="about" class="section">
   <div class="about-grid">
 
-    <div class="about-visual reveal">
+    <div class="about-visual reveal-scale">
       <div class="about-img-wrap">
         <div class="about-img-placeholder">☁️</div>
         <h3>Mudassar Muzammil</h3>
@@ -281,7 +316,7 @@
       </div>
     </div>
 
-    <div class="about-content reveal reveal-delay-1">
+    <div class="about-content reveal-right reveal-delay-1">
       <p class="section-tag">Who We Are</p>
       <h2 class="section-title">Built by Engineers,<br>for Engineering Teams</h2>
       <p>CloudOps Agency was founded with one mission: make enterprise-grade cloud infrastructure accessible to every engineering team — not just the ones with 10-person DevOps departments.</p>
@@ -573,7 +608,7 @@
      CONTACT
 ══════════════════════════════════════════════════════════════ -->
 <section id="contact" class="section">
-  <div class="reveal" style="margin-bottom:48px;">
+  <div class="reveal-left" style="margin-bottom:48px;">
     <p class="section-tag">Contact Us</p>
     <h2 class="section-title">Let's Build Something Great</h2>
     <p class="section-sub">Tell us about your infrastructure challenges. We'll respond within one business day.</p>
@@ -581,7 +616,7 @@
 
   <div class="contact-grid">
 
-    <div class="contact-info reveal">
+    <div class="contact-info reveal-left">
       <div class="contact-card">
         <div class="contact-icon">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -623,7 +658,7 @@
       </div>
     </div>
 
-    <div id="formWrap" class="contact-form-wrap reveal reveal-delay-1">
+    <div id="formWrap" class="contact-form-wrap reveal-right reveal-delay-1">
       <h3>Send Us a Message</h3>
       <p>Fill in the details below and we'll get back to you within 24 hours.</p>
 

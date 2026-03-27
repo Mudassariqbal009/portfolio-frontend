@@ -308,6 +308,7 @@ button { font-family: inherit; cursor: pointer; }
   justify-content: center;
   text-align: center;
   padding: 120px 24px 80px;
+  position: relative;
 }
 
 .hero-badge {
@@ -987,3 +988,329 @@ footer {
   .hero-ctas { flex-direction: column; align-items: center; }
   .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
 }
+
+/* ============================================================
+   PRELOADER
+   ============================================================ */
+#preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  background: #020817;
+  transition: transform 0.7s cubic-bezier(.76,0,.24,1), opacity 0.7s ease;
+}
+#preloader.hide {
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+}
+.pre-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  animation: preLogoIn 0.6s cubic-bezier(.22,1,.36,1) 0.2s forwards;
+}
+.pre-logo-icon {
+  width: 52px; height: 52px;
+  background: #2563eb;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 32px rgba(37,99,235,0.6);
+  animation: iconPulse 2s ease-in-out infinite;
+}
+.pre-logo-text {
+  font-size: 28px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.5px;
+}
+.pre-logo-text span { color: #60a5fa; }
+.pre-tagline {
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #475569;
+  opacity: 0;
+  animation: fadeUp 0.5s ease 0.5s forwards;
+}
+.pre-bar-wrap {
+  width: 200px;
+  height: 2px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 99px;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeUp 0.4s ease 0.6s forwards;
+}
+.pre-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #2563eb, #06b6d4);
+  border-radius: 99px;
+  animation: barFill 1.4s cubic-bezier(.4,0,.2,1) 0.7s forwards;
+}
+@keyframes preLogoIn {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes fadeUp {
+  to { opacity: 1; }
+}
+@keyframes barFill {
+  to { width: 100%; }
+}
+@keyframes iconPulse {
+  0%, 100% { box-shadow: 0 0 32px rgba(37,99,235,0.6); }
+  50%       { box-shadow: 0 0 48px rgba(37,99,235,0.9), 0 0 80px rgba(6,182,212,0.3); }
+}
+
+/* ============================================================
+   CANVAS BACKGROUND
+   ============================================================ */
+#canvas-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.55;
+  pointer-events: none;
+}
+[data-theme="dark"] #canvas-bg { opacity: 0.35; }
+
+/* ============================================================
+   CURSOR GLOW
+   ============================================================ */
+#cursor-glow {
+  position: fixed;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 70%);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 0;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+[data-theme="dark"] #cursor-glow {
+  background: radial-gradient(circle, rgba(96,165,250,0.1) 0%, transparent 70%);
+}
+
+/* ============================================================
+   ANIMATED GRADIENT HERO TITLE
+   ============================================================ */
+.hero h1 {
+  background: linear-gradient(135deg, var(--clr-text) 0%, var(--clr-text) 40%, var(--clr-brand) 60%, var(--clr-accent) 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 6s ease infinite;
+}
+/* Override the accent span since whole h1 uses gradient */
+.hero h1 .accent {
+  -webkit-text-fill-color: transparent;
+}
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+[data-theme="dark"] .hero h1 {
+  background: linear-gradient(135deg, #f1f5f9 0%, #f1f5f9 35%, #60a5fa 60%, #06b6d4 100%);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: gradientShift 6s ease infinite;
+}
+
+/* ============================================================
+   WORD CYCLING IN HERO
+   ============================================================ */
+.word-cycle {
+  display: inline-block;
+  position: relative;
+  color: var(--clr-brand);
+  -webkit-text-fill-color: var(--clr-brand);
+}
+.word-cycle::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--clr-brand), var(--clr-accent));
+  border-radius: 2px;
+  animation: underlineGrow 0.4s ease forwards;
+}
+@keyframes underlineGrow {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+.word-cycle.fade-out { animation: wordOut 0.3s ease forwards; }
+.word-cycle.fade-in  { animation: wordIn  0.4s cubic-bezier(.22,1,.36,1) forwards; }
+@keyframes wordOut {
+  to { opacity: 0; transform: translateY(-12px); }
+}
+@keyframes wordIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================================
+   FLOATING TECH CHIPS IN HERO
+   ============================================================ */
+.hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 32px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.7s ease 0.6s, transform 0.7s ease 0.6s;
+}
+.hero-loaded .hero-chips { opacity: 1; transform: translateY(0); }
+.hero-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(37,99,235,0.15);
+  border-radius: 99px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--clr-text-2);
+  backdrop-filter: blur(8px);
+  animation: chipFloat var(--dur, 4s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+[data-theme="dark"] .hero-chip {
+  background: rgba(15,23,42,0.6);
+  border-color: rgba(96,165,250,0.15);
+}
+.hero-chip .chip-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+@keyframes chipFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+/* ============================================================
+   REVEAL VARIANTS
+   ============================================================ */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.7s var(--transition-slow), transform 0.7s var(--transition-slow);
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.7s var(--transition-slow), transform 0.7s var(--transition-slow);
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.88);
+  transition: opacity 0.6s var(--transition-slow), transform 0.6s var(--transition-slow);
+}
+.reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+/* ============================================================
+   SECTION ACCENT LINES
+   ============================================================ */
+.section-title-line {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.section-title-line h2 { margin-bottom: 0; }
+.title-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--clr-border), transparent);
+}
+
+/* ============================================================
+   ENHANCED STATS BAR
+   ============================================================ */
+.stats-bar {
+  background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 50%, #0891b2 100%);
+  position: relative;
+  overflow: hidden;
+}
+.stats-bar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* ============================================================
+   NAV SCROLLED STATE
+   ============================================================ */
+.nav.scrolled {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+[data-theme="dark"] .nav.scrolled {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
+}
+
+/* ============================================================
+   HERO SCROLL INDICATOR
+   ============================================================ */
+.scroll-indicator {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity 0.5s ease 1.5s;
+  color: var(--clr-text-3);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.hero-loaded .scroll-indicator { opacity: 1; }
+.scroll-mouse {
+  width: 22px; height: 34px;
+  border: 2px solid var(--clr-border);
+  border-radius: 11px;
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+}
+.scroll-wheel {
+  width: 3px; height: 6px;
+  background: var(--clr-brand);
+  border-radius: 2px;
+  animation: scrollWheel 1.8s ease infinite;
+}
+@keyframes scrollWheel {
+  0%   { transform: translateY(0); opacity: 1; }
+  80%  { transform: translateY(10px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 0; }
+}
+
