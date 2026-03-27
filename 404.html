@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 — Page Not Found · CloudOps Agency</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .not-found {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 40px 24px;
+    }
+    .not-found .code {
+      font-size: 120px;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--clr-brand);
+      letter-spacing: -4px;
+      opacity: 0.15;
+    }
+    .not-found h1 { font-size: 32px; font-weight: 800; margin-top: -32px; }
+    .not-found p  { font-size: 16px; color: var(--clr-text-2); margin-top: 12px; max-width: 400px; }
+    .not-found-actions { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; justify-content: center; }
+  </style>
+</head>
+<body>
+<div class="bg-gradient"></div>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+
+<nav class="nav" role="navigation">
+  <a href="index.html" class="nav-logo">
+    <svg width="28" height="28" viewBox="0 0 32 32" fill="none"><rect width="32" height="32" rx="8" fill="#2563eb"/><path d="M7 19.5C5.07 19.5 3.5 17.93 3.5 16S5.07 12.5 7 12.5c.3 0 .6.04.88.1C8.5 10.7 10.12 9.5 12 9.5c.87 0 1.67.28 2.32.74C15.07 9.1 16.24 8.5 17.56 8.5c2.18 0 3.94 1.76 3.94 3.94 0 .2-.02.4-.05.59C23.5 13.42 25 15.08 25 17.06 25 19.24 23.24 21 21.06 21H7v-1.5z" fill="white"/><rect x="14" y="19" width="2" height="7" rx="1" fill="white"/><rect x="10" y="23" width="10" height="2" rx="1" fill="white"/></svg>
+    Cloud<span>Ops</span>
+  </a>
+  <div class="nav-actions">
+    <button id="themeToggle" class="btn-theme" aria-label="Toggle dark mode">
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun"  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/></svg>
+    </button>
+  </div>
+</nav>
+
+<div class="not-found">
+  <div class="code">404</div>
+  <h1>Page Not Found</h1>
+  <p>The page you're looking for doesn't exist or has been moved. Let's get you back on track.</p>
+  <div class="not-found-actions">
+    <a href="index.html"          class="btn-primary">Go to Homepage</a>
+    <a href="index.html#contact"  class="btn-secondary">Contact Us</a>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

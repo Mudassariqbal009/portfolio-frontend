@@ -1,331 +1,766 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CloudOps Agency</title>
+  <!-- ── PRIMARY META ──────────────────────────────────────── -->
+  <title>CloudOps Agency — DevOps & Cloud Infrastructure Experts</title>
+  <meta name="description" content="CloudOps Agency delivers enterprise-grade DevOps, cloud infrastructure, Kubernetes, and CI/CD automation. Scale your infrastructure with confidence.">
+  <meta name="author" content="CloudOps Agency">
+  <meta name="theme-color" content="#2563eb">
+  <link rel="canonical" href="https://cloudops.agency/">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <!-- ── OPEN GRAPH ─────────────────────────────────────────── -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://cloudops.agency/">
+  <meta property="og:title"       content="CloudOps Agency — DevOps & Cloud Infrastructure Experts">
+  <meta property="og:description" content="Enterprise-grade DevOps, cloud infrastructure, Kubernetes, and CI/CD automation. Scale with confidence.">
+  <meta property="og:image"       content="https://cloudops.agency/og-image.png">
 
-<style>
+  <!-- ── TWITTER CARD ──────────────────────────────────────── -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="CloudOps Agency — DevOps & Cloud Experts">
+  <meta name="twitter:description" content="Enterprise-grade cloud infrastructure, Kubernetes, and CI/CD automation.">
+  <meta name="twitter:image"       content="https://cloudops.agency/og-image.png">
 
-/* RESET */
-*{margin:0;padding:0;box-sizing:border-box;}
+  <!-- ── FAVICON (inline SVG) ──────────────────────────────── -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%232563eb'/><path d='M7 19.5C5.07 19.5 3.5 17.93 3.5 16S5.07 12.5 7 12.5c.3 0 .6.04.88.1C8.5 10.7 10.12 9.5 12 9.5c.87 0 1.67.28 2.32.74C15.07 9.1 16.24 8.5 17.56 8.5c2.18 0 3.94 1.76 3.94 3.94 0 .2-.02.4-.05.59C23.5 13.42 25 15.08 25 17.06 25 19.24 23.24 21 21.06 21H7v-1.5z' fill='white'/><rect x='14' y='19' width='2' height='7' rx='1' fill='white'/><rect x='10' y='23' width='10' height='2' rx='1' fill='white'/></svg>">
 
-body{
-  font-family:'Inter',sans-serif;
-  color:#0f172a;
-  overflow-x:hidden;
-}
+  <!-- ── FONTS ──────────────────────────────────────────────── -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-/* BACKGROUND */
-.bg{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:linear-gradient(120deg,#eef2ff,#f0f9ff,#fef9c3);
-  z-index:-3;
-}
+  <!-- ── STYLESHEET ────────────────────────────────────────── -->
+  <link rel="stylesheet" href="css/style.css">
 
-.blob{
-  position:absolute;
-  width:400px;
-  height:400px;
-  border-radius:50%;
-  filter:blur(100px);
-  opacity:0.5;
-  animation:float 15s infinite ease-in-out;
-}
-
-.b1{background:#60a5fa;top:10%;left:10%;}
-.b2{background:#34d399;top:60%;left:70%;animation-delay:3s;}
-.b3{background:#fbbf24;top:80%;left:20%;animation-delay:6s;}
-
-@keyframes float{
-  0%{transform:translate(0,0);}
-  50%{transform:translate(80px,-80px);}
-  100%{transform:translate(0,0);}
-}
-
-/* NAV */
-nav{
-  display:flex;
-  justify-content:space-between;
-  padding:20px 60px;
-  position:fixed;
-  width:100%;
-  background:rgba(255,255,255,0.7);
-  backdrop-filter:blur(12px);
-  z-index:10;
-}
-
-nav a{
-  margin-left:20px;
-  text-decoration:none;
-  color:#334155;
-}
-
-/* HERO */
-.hero{
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-}
-
-.hero h1{
-  font-size:64px;
-  font-weight:700;
-  opacity:0;
-  transform:translateY(40px);
-  transition:0.8s;
-}
-
-.hero p{
-  margin-top:15px;
-  font-size:20px;
-  color:#64748b;
-  opacity:0;
-  transform:translateY(40px);
-  transition:0.8s;
-}
-
-.btn{
-  margin-top:25px;
-  padding:14px 28px;
-  border-radius:12px;
-  background:#2563eb;
-  color:white;
-  text-decoration:none;
-  font-weight:600;
-  transition:0.3s;
-}
-
-.btn:hover{
-  transform:scale(1.05);
-}
-
-/* SECTION */
-.section{
-  max-width:1100px;
-  margin:auto;
-  padding:120px 20px;
-  opacity:0;
-  transform:translateY(60px);
-  transition:0.8s;
-}
-
-.section.show{
-  opacity:1;
-  transform:translateY(0);
-}
-
-h2{
-  font-size:34px;
-  margin-bottom:30px;
-}
-
-/* GRID */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-}
-
-/* CARD */
-.card{
-  background:white;
-  padding:25px;
-  border-radius:16px;
-  transition:0.4s;
-}
-
-.card:hover{
-  transform:translateY(-10px) scale(1.03);
-  box-shadow:0 20px 40px rgba(0,0,0,0.12);
-}
-
-/* CONTACT */
-.contact{
-  display:flex;
-  gap:20px;
-  flex-wrap:wrap;
-}
-
-.box{
-  flex:1;
-  background:white;
-  padding:20px;
-  border-radius:12px;
-}
-
-form{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-input,textarea{
-  padding:12px;
-  border-radius:8px;
-  border:1px solid #ccc;
-}
-
-button{
-  padding:12px;
-  background:#2563eb;
-  color:white;
-  border:none;
-  border-radius:8px;
-  cursor:pointer;
-}
-
-/* SUCCESS MSG */
-#successMsg{
-  display:none;
-  color:green;
-  margin-top:10px;
-}
-
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:40px;
-  color:#64748b;
-}
-
-</style>
-
+  <!-- ── JSON-LD STRUCTURED DATA ───────────────────────────── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "CloudOps Agency",
+    "url": "https://cloudops.agency",
+    "logo": "https://cloudops.agency/og-image.png",
+    "description": "Enterprise DevOps, cloud infrastructure, Kubernetes, and CI/CD automation services.",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "hello@cloudops.agency",
+      "contactType": "customer service"
+    },
+    "sameAs": [
+      "https://linkedin.com/company/cloudops-agency",
+      "https://github.com/cloudops-agency"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "CloudOps Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cloud Infrastructure" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Kubernetes & Container Orchestration" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CI/CD Pipeline Automation" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Monitoring & Observability" } }
+      ]
+    }
+  }
+  </script>
 </head>
 
 <body>
 
-<!-- BACKGROUND -->
-<div class="bg"></div>
-<div class="blob b1"></div>
-<div class="blob b2"></div>
-<div class="blob b3"></div>
+<!-- ── BACKGROUND ──────────────────────────────────────────── -->
+<div class="bg-gradient"></div>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
 
-<!-- NAV -->
-<nav>
-  <b>CloudOps</b>
-  <div>
-    <a href="#services">Services</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
+<!-- ── NAVIGATION ──────────────────────────────────────────── -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <a href="#hero" class="nav-logo" aria-label="CloudOps Agency home">
+    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+      <rect width="32" height="32" rx="8" fill="#2563eb"/>
+      <path d="M7 19.5C5.07 19.5 3.5 17.93 3.5 16S5.07 12.5 7 12.5c.3 0 .6.04.88.1C8.5 10.7 10.12 9.5 12 9.5c.87 0 1.67.28 2.32.74C15.07 9.1 16.24 8.5 17.56 8.5c2.18 0 3.94 1.76 3.94 3.94 0 .2-.02.4-.05.59C23.5 13.42 25 15.08 25 17.06 25 19.24 23.24 21 21.06 21H7v-1.5z" fill="white"/>
+      <rect x="14" y="19" width="2" height="7" rx="1" fill="white"/>
+      <rect x="10" y="23" width="10" height="2" rx="1" fill="white"/>
+    </svg>
+    Cloud<span>Ops</span>
+  </a>
+
+  <div class="nav-links" role="menubar">
+    <a href="#services"        role="menuitem">Services</a>
+    <a href="#about"           role="menuitem">About</a>
+    <a href="#projects"        role="menuitem">Projects</a>
+    <a href="#pricing"         role="menuitem">Pricing</a>
+    <a href="#contact"         role="menuitem">Contact</a>
+  </div>
+
+  <div class="nav-actions">
+    <button id="themeToggle" class="btn-theme" aria-label="Toggle dark mode">
+      <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun"  width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    </button>
+    <a href="#contact" class="btn-nav desktop">Get Started</a>
+    <button id="hamburger" class="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <h1 id="heroTitle">DevOps That Scales</h1>
-  <p id="heroText">Cloud • Automation • Kubernetes • CI/CD</p>
-  <a href="#contact" class="btn">Get Started</a>
+<!-- ── MOBILE MENU ─────────────────────────────────────────── -->
+<div id="mobileMenu" class="mobile-menu" role="menu">
+  <a href="#services" role="menuitem">Services</a>
+  <a href="#about"    role="menuitem">About</a>
+  <a href="#projects" role="menuitem">Projects</a>
+  <a href="#pricing"  role="menuitem">Pricing</a>
+  <a href="#contact"  role="menuitem">Contact</a>
+  <a href="#contact"  class="btn-nav">Get Started</a>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════════════════ -->
+<section id="hero" class="hero" aria-label="Hero">
+  <div class="hero-badge">
+    <span class="dot">✓</span>
+    Trusted by 40+ engineering teams worldwide
+  </div>
+
+  <h1>DevOps Infrastructure<br>That <span class="accent">Scales</span> With You</h1>
+
+  <p class="hero-sub">
+    We design, build, and operate enterprise cloud infrastructure — so your team ships faster, fails safer, and scales smarter.
+  </p>
+
+  <div class="hero-ctas">
+    <a href="#contact" class="btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.82 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Book a Discovery Call
+    </a>
+    <a href="#projects" class="btn-secondary">
+      View Case Studies
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
 </section>
 
-<!-- SERVICES -->
+<!-- ── TRUSTED BY ──────────────────────────────────────────── -->
+<div class="trusted">
+  <p class="trusted-label">Trusted by teams at</p>
+  <div class="trusted-logos" aria-label="Trusted companies">
+    <span class="trusted-logo">Fintech Corp</span>
+    <span class="trusted-logo">ScaleUp SaaS</span>
+    <span class="trusted-logo">LogiStream</span>
+    <span class="trusted-logo">NexaHealth</span>
+    <span class="trusted-logo">BuildBase</span>
+    <span class="trusted-logo">VaultPay</span>
+  </div>
+</div>
+
+<!-- ── STATS BAR ───────────────────────────────────────────── -->
+<div class="stats-bar" aria-label="Company stats">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-number"><span data-count="50">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Projects Delivered</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-1">
+      <div class="stat-number"><span data-count="99">0</span><span class="stat-suffix">.9%</span></div>
+      <div class="stat-label">Average Uptime SLA</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-2">
+      <div class="stat-number"><span data-count="12">0</span><span class="stat-suffix">x</span></div>
+      <div class="stat-label">Faster Deployments</div>
+    </div>
+    <div class="stat-item reveal reveal-delay-3">
+      <div class="stat-number"><span data-count="40">0</span><span class="stat-suffix">+</span></div>
+      <div class="stat-label">Engineers Served</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     SERVICES
+══════════════════════════════════════════════════════════════ -->
 <section id="services" class="section">
-  <h2>Services</h2>
-
-  <div class="grid">
-    <div class="card"><h3>☁️ Cloud Infrastructure</h3><p>AWS / GCP scalable setup</p></div>
-    <div class="card"><h3>🐳 Docker & Kubernetes</h3><p>Container orchestration</p></div>
-    <div class="card"><h3>🔄 CI/CD</h3><p>Automated pipelines</p></div>
-    <div class="card"><h3>📊 Monitoring</h3><p>Prometheus & Grafana</p></div>
+  <div class="reveal">
+    <p class="section-tag">What We Do</p>
+    <h2 class="section-title">End-to-End Cloud & DevOps Services</h2>
+    <p class="section-sub">From infrastructure design to 24/7 operations — we cover the full DevOps lifecycle.</p>
   </div>
-</section>
 
-<!-- PROJECTS -->
-<section id="projects" class="section">
-  <h2>Projects</h2>
+  <div class="grid-auto" style="margin-top:48px;">
 
-  <div class="grid">
-    <div class="card">CI/CD Pipeline System</div>
-    <div class="card">Cloud Migration</div>
-    <div class="card">Monitoring Stack</div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" class="section">
-  <h2>Contact</h2>
-
-  <div class="contact">
-
-    <div class="box">
-      <p>📞 +92 313 7987137</p>
-      <p>📧 mudassariqbal835@gmail.com</p>
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+      </div>
+      <h3>Cloud Infrastructure</h3>
+      <p>Design and deploy production-grade multi-cloud environments on AWS and GCP with Infrastructure as Code, auto-scaling, and disaster recovery built in.</p>
+      <div class="service-tags">
+        <span class="tag">AWS</span><span class="tag">GCP</span><span class="tag">Terraform</span><span class="tag">IaC</span>
+      </div>
     </div>
 
-    <form id="contactForm" action="https://formspree.io/f/xykbgoqj" method="POST">
-      <input type="text" name="name" placeholder="Name" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <textarea name="message" placeholder="Message" required></textarea>
-      <button type="submit">Send</button>
-    </form>
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <h3>Kubernetes & Containers</h3>
+      <p>Full K8s cluster lifecycle management — from EKS/GKE provisioning to Helm chart development, namespace strategy, and cost optimization via node autoscaling.</p>
+      <div class="service-tags">
+        <span class="tag">Kubernetes</span><span class="tag">Docker</span><span class="tag">Helm</span><span class="tag">EKS</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal reveal-delay-3">
+      <div class="service-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/></svg>
+      </div>
+      <h3>CI/CD Pipelines</h3>
+      <p>Automated build, test, and deployment pipelines that cut release cycles from days to minutes. GitOps workflows with ArgoCD or Flux for zero-downtime deploys.</p>
+      <div class="service-tags">
+        <span class="tag">GitHub Actions</span><span class="tag">ArgoCD</span><span class="tag">GitOps</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      </div>
+      <h3>Monitoring & Observability</h3>
+      <p>Full-stack observability with metrics, logs, and distributed tracing. Custom Grafana dashboards, alerting pipelines, and SLO/SLI tracking so you know before users do.</p>
+      <div class="service-tags">
+        <span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">Datadog</span><span class="tag">OpenTelemetry</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Security & Compliance</h3>
+      <p>DevSecOps practices embedded into every pipeline — secrets management, SAST/DAST scanning, RBAC hardening, and SOC2/ISO27001 compliance tooling.</p>
+      <div class="service-tags">
+        <span class="tag">Vault</span><span class="tag">OPA</span><span class="tag">Trivy</span><span class="tag">SOC2</span>
+      </div>
+    </div>
+
+    <div class="service-card reveal reveal-delay-3">
+      <div class="service-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+      </div>
+      <h3>Platform Engineering</h3>
+      <p>Internal developer platforms (IDP) that abstract away infrastructure complexity. Self-service environments, golden paths, and developer portals powered by Backstage.</p>
+      <div class="service-tags">
+        <span class="tag">Backstage</span><span class="tag">Crossplane</span><span class="tag">IDP</span>
+      </div>
+    </div>
 
   </div>
-
-  <p id="successMsg">✅ Message sent successfully</p>
-
 </section>
 
-<footer>
-  © 2026 CloudOps Agency
+<!-- ══════════════════════════════════════════════════════════
+     ABOUT
+══════════════════════════════════════════════════════════════ -->
+<section id="about" class="section">
+  <div class="about-grid">
+
+    <div class="about-visual reveal">
+      <div class="about-img-wrap">
+        <div class="about-img-placeholder">☁️</div>
+        <h3>Mudassar Muzammil</h3>
+        <p>Founder & Lead Cloud Architect</p>
+      </div>
+      <div class="about-card about-card-1">
+        <span class="dot"></span>
+        Available for new projects
+      </div>
+      <div class="about-card about-card-2">
+        🌍 Remote-first · UTC+5
+      </div>
+    </div>
+
+    <div class="about-content reveal reveal-delay-1">
+      <p class="section-tag">Who We Are</p>
+      <h2 class="section-title">Built by Engineers,<br>for Engineering Teams</h2>
+      <p>CloudOps Agency was founded with one mission: make enterprise-grade cloud infrastructure accessible to every engineering team — not just the ones with 10-person DevOps departments.</p>
+      <p>We've spent years in the trenches building and operating distributed systems across fintech, SaaS, healthcare, and logistics. That hands-on experience is what we bring to every engagement.</p>
+      <p>We work as an extension of your team — embedding best practices, automating the boring parts, and leaving you with infrastructure you own and understand.</p>
+
+      <div class="about-values">
+        <div class="about-value">
+          <span class="icon">⚡</span>
+          <div><strong>Automation-First</strong><span>If it can be automated, it will be</span></div>
+        </div>
+        <div class="about-value">
+          <span class="icon">🔒</span>
+          <div><strong>Security by Default</strong><span>Never bolted on at the end</span></div>
+        </div>
+        <div class="about-value">
+          <span class="icon">📖</span>
+          <div><strong>Docs & Handoffs</strong><span>We don't create black boxes</span></div>
+        </div>
+        <div class="about-value">
+          <span class="icon">📊</span>
+          <div><strong>Measurable Outcomes</strong><span>Every project has defined KPIs</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── TECH STACK ───────────────────────────────────────────── -->
+<section class="section" style="padding-top:0;" aria-label="Technology stack">
+  <div class="reveal">
+    <p class="section-tag">Technology Stack</p>
+    <h2 class="section-title">Tools We Work With Daily</h2>
+  </div>
+
+  <div class="tech-grid">
+    <span class="tech-badge reveal"><span class="tech-dot" style="background:#FF9900"></span>Amazon Web Services</span>
+    <span class="tech-badge reveal reveal-delay-1"><span class="tech-dot" style="background:#4285F4"></span>Google Cloud Platform</span>
+    <span class="tech-badge reveal reveal-delay-2"><span class="tech-dot" style="background:#326CE5"></span>Kubernetes</span>
+    <span class="tech-badge reveal reveal-delay-3"><span class="tech-dot" style="background:#2496ED"></span>Docker</span>
+    <span class="tech-badge reveal"><span class="tech-dot" style="background:#7B42BC"></span>Terraform</span>
+    <span class="tech-badge reveal reveal-delay-1"><span class="tech-dot" style="background:#EE3124"></span>Helm</span>
+    <span class="tech-badge reveal reveal-delay-2"><span class="tech-dot" style="background:#E10098"></span>ArgoCD</span>
+    <span class="tech-badge reveal reveal-delay-3"><span class="tech-dot" style="background:#2088FF"></span>GitHub Actions</span>
+    <span class="tech-badge reveal"><span class="tech-dot" style="background:#E6522C"></span>Prometheus</span>
+    <span class="tech-badge reveal reveal-delay-1"><span class="tech-dot" style="background:#F46800"></span>Grafana</span>
+    <span class="tech-badge reveal reveal-delay-2"><span class="tech-dot" style="background:#632CA6"></span>Datadog</span>
+    <span class="tech-badge reveal reveal-delay-3"><span class="tech-dot" style="background:#000000"></span>HashiCorp Vault</span>
+    <span class="tech-badge reveal"><span class="tech-dot" style="background:#1793D1"></span>Ansible</span>
+    <span class="tech-badge reveal reveal-delay-1"><span class="tech-dot" style="background:#003366"></span>GitLab CI</span>
+    <span class="tech-badge reveal reveal-delay-2"><span class="tech-dot" style="background:#00BCD4"></span>Crossplane</span>
+    <span class="tech-badge reveal reveal-delay-3"><span class="tech-dot" style="background:#7C3AED"></span>Backstage</span>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     PROJECTS / CASE STUDIES
+══════════════════════════════════════════════════════════════ -->
+<section id="projects" class="section">
+  <div class="reveal">
+    <p class="section-tag">Case Studies</p>
+    <h2 class="section-title">Real Projects, Measurable Results</h2>
+    <p class="section-sub">Every engagement is defined by clear objectives and quantified outcomes.</p>
+  </div>
+
+  <div class="grid-3" style="margin-top:48px;">
+
+    <div class="project-card reveal reveal-delay-1">
+      <div class="project-banner" style="background:linear-gradient(135deg,#dbeafe,#e0f2fe);">🚀</div>
+      <div class="project-body">
+        <p class="project-industry">FinTech · Payment Platform</p>
+        <h3>Zero-Downtime CI/CD Overhaul</h3>
+        <p>Replaced a fragile Jenkins monolith with a GitOps-based pipeline using GitHub Actions and ArgoCD across 3 Kubernetes clusters serving 2M daily transactions.</p>
+        <div class="project-outcomes">
+          <span class="outcome">Deployment time: 45 min → 4 min</span>
+          <span class="outcome">Release frequency: weekly → 20× per day</span>
+          <span class="outcome">Rollback time: 2 hours → 90 seconds</span>
+        </div>
+        <div class="project-stack">
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">ArgoCD</span>
+          <span class="tag">EKS</span>
+          <span class="tag">Helm</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-2">
+      <div class="project-banner" style="background:linear-gradient(135deg,#dcfce7,#d1fae5);">☁️</div>
+      <div class="project-body">
+        <p class="project-industry">SaaS · B2B Analytics</p>
+        <h3>Cloud Migration to AWS</h3>
+        <p>Migrated a 3-tier legacy application from bare-metal servers to a fully managed AWS environment with auto-scaling, RDS, and multi-AZ redundancy in 8 weeks.</p>
+        <div class="project-outcomes">
+          <span class="outcome">Infrastructure cost: −38% monthly</span>
+          <span class="outcome">Uptime: 97.1% → 99.95%</span>
+          <span class="outcome">Page load: 4.2s → 1.1s</span>
+        </div>
+        <div class="project-stack">
+          <span class="tag">AWS</span>
+          <span class="tag">Terraform</span>
+          <span class="tag">RDS</span>
+          <span class="tag">CloudFront</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="project-card reveal reveal-delay-3">
+      <div class="project-banner" style="background:linear-gradient(135deg,#fef9c3,#fef3c7);">📊</div>
+      <div class="project-body">
+        <p class="project-industry">Logistics · Fleet Management</p>
+        <h3>Full-Stack Observability Platform</h3>
+        <p>Built a unified observability stack for a fleet of 120+ microservices — replacing fragmented logging with centralized metrics, traces, and actionable alerts using Prometheus, Grafana, and OpenTelemetry.</p>
+        <div class="project-outcomes">
+          <span class="outcome">MTTR (incident resolution): −72%</span>
+          <span class="outcome">Alert noise: −85% after tuning</span>
+          <span class="outcome">On-call pages per week: 47 → 6</span>
+        </div>
+        <div class="project-stack">
+          <span class="tag">Prometheus</span>
+          <span class="tag">Grafana</span>
+          <span class="tag">OpenTelemetry</span>
+          <span class="tag">Loki</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     TESTIMONIALS
+══════════════════════════════════════════════════════════════ -->
+<section class="section" style="padding-top:0;">
+  <div class="reveal">
+    <p class="section-tag">Testimonials</p>
+    <h2 class="section-title">What Engineering Leaders Say</h2>
+  </div>
+
+  <div class="grid-3" style="margin-top:48px;">
+
+    <div class="testimonial-card reveal reveal-delay-1">
+      <div class="stars">★★★★★</div>
+      <blockquote>"CloudOps completely transformed our release process. We went from dreading deployments to shipping confidently multiple times a day. The ArgoCD setup they designed is rock-solid."</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">AK</div>
+        <div>
+          <div class="author-name">Ali Khan</div>
+          <div class="author-title">CTO, FinTech Corp</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card reveal reveal-delay-2">
+      <div class="stars">★★★★★</div>
+      <blockquote>"The cloud migration was seamless — zero production incidents during cutover. More importantly, they documented everything. Our team actually understands the infrastructure now."</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">SR</div>
+        <div>
+          <div class="author-name">Sara Reyes</div>
+          <div class="author-title">VP Engineering, ScaleUp SaaS</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonial-card reveal reveal-delay-3">
+      <div class="stars">★★★★★</div>
+      <blockquote>"Our on-call rotation was a nightmare — 40+ pages a week. CloudOps built us an observability stack that actually surfaces actionable alerts. Night and day difference."</blockquote>
+      <div class="testimonial-author">
+        <div class="author-avatar">TM</div>
+        <div>
+          <div class="author-name">Tariq Mirza</div>
+          <div class="author-title">Platform Lead, LogiStream</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     PRICING
+══════════════════════════════════════════════════════════════ -->
+<section id="pricing" class="section">
+  <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto 48px;">
+    <p class="section-tag">Pricing</p>
+    <h2 class="section-title">Transparent Engagement Models</h2>
+    <p class="section-sub" style="margin:0 auto;">No surprises. Choose the model that fits your team's needs.</p>
+  </div>
+
+  <div class="grid-3">
+
+    <div class="pricing-card reveal reveal-delay-1">
+      <h3>Starter</h3>
+      <p style="font-size:14px;color:var(--clr-text-2);margin-top:4px;">For early-stage startups</p>
+      <div class="price">$2,500<span>/mo</span></div>
+      <p class="pricing-desc">Get your cloud foundation right from day one.</p>
+      <ul class="pricing-features">
+        <li>Up to 2 cloud environments</li>
+        <li>CI/CD pipeline setup (1 repo)</li>
+        <li>Basic monitoring & alerting</li>
+        <li>Terraform IaC for all resources</li>
+        <li>Monthly architecture review</li>
+        <li>Email support (48h response)</li>
+      </ul>
+      <button class="btn-pricing" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+    </div>
+
+    <div class="pricing-card featured reveal reveal-delay-2">
+      <span class="pricing-badge">Most Popular</span>
+      <h3>Growth</h3>
+      <p style="font-size:14px;color:var(--clr-text-2);margin-top:4px;">For scaling engineering teams</p>
+      <div class="price">$6,000<span>/mo</span></div>
+      <p class="pricing-desc">Full DevOps partnership for companies in growth mode.</p>
+      <ul class="pricing-features">
+        <li>Unlimited environments</li>
+        <li>Full CI/CD for all repositories</li>
+        <li>Production Kubernetes cluster</li>
+        <li>Full observability stack</li>
+        <li>Security hardening & scanning</li>
+        <li>Weekly sync calls</li>
+        <li>Slack support (4h response)</li>
+        <li>On-call escalation support</li>
+      </ul>
+      <button class="btn-pricing" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Get Started</button>
+    </div>
+
+    <div class="pricing-card reveal reveal-delay-3">
+      <h3>Enterprise</h3>
+      <p style="font-size:14px;color:var(--clr-text-2);margin-top:4px;">For large-scale operations</p>
+      <div class="price" style="font-size:32px;">Custom</div>
+      <p class="pricing-desc">Bespoke engagement for complex infrastructure needs.</p>
+      <ul class="pricing-features">
+        <li>Dedicated CloudOps engineer</li>
+        <li>Multi-cloud architecture</li>
+        <li>Platform Engineering (IDP)</li>
+        <li>Compliance automation (SOC2)</li>
+        <li>FinOps & cost optimization</li>
+        <li>24/7 on-call coverage</li>
+        <li>SLA-backed response times</li>
+        <li>Quarterly executive reviews</li>
+      </ul>
+      <button class="btn-pricing" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Contact Us</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CERTIFICATIONS
+══════════════════════════════════════════════════════════════ -->
+<section class="section" style="padding-top:0;">
+  <div class="reveal">
+    <p class="section-tag">Credentials</p>
+    <h2 class="section-title">Certified Expertise</h2>
+    <p class="section-sub">Our certifications back every claim we make.</p>
+  </div>
+
+  <div class="certs-grid">
+    <div class="cert-card reveal reveal-delay-1">
+      <div class="cert-icon" style="background:#FF9900;">☁️</div>
+      <div><div class="cert-name">AWS Solutions Architect</div><div class="cert-issuer">Amazon Web Services · Professional</div></div>
+    </div>
+    <div class="cert-card reveal reveal-delay-2">
+      <div class="cert-icon" style="background:#326CE5;">⎈</div>
+      <div><div class="cert-name">CKA — Certified Kubernetes Administrator</div><div class="cert-issuer">Cloud Native Computing Foundation</div></div>
+    </div>
+    <div class="cert-card reveal reveal-delay-3">
+      <div class="cert-icon" style="background:#7B42BC;">🏗️</div>
+      <div><div class="cert-name">HashiCorp Terraform Associate</div><div class="cert-issuer">HashiCorp · Infrastructure Automation</div></div>
+    </div>
+    <div class="cert-card reveal reveal-delay-1">
+      <div class="cert-icon" style="background:#4285F4;">🌐</div>
+      <div><div class="cert-name">GCP Professional Cloud Architect</div><div class="cert-issuer">Google Cloud Platform</div></div>
+    </div>
+    <div class="cert-card reveal reveal-delay-2">
+      <div class="cert-icon" style="background:#326CE5;">🛡️</div>
+      <div><div class="cert-name">CKAD — Kubernetes Application Developer</div><div class="cert-issuer">Cloud Native Computing Foundation</div></div>
+    </div>
+    <div class="cert-card reveal reveal-delay-3">
+      <div class="cert-icon" style="background:#632CA6;">📊</div>
+      <div><div class="cert-name">Datadog Fundamentals</div><div class="cert-issuer">Datadog · Observability Platform</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     CONTACT
+══════════════════════════════════════════════════════════════ -->
+<section id="contact" class="section">
+  <div class="reveal" style="margin-bottom:48px;">
+    <p class="section-tag">Contact Us</p>
+    <h2 class="section-title">Let's Build Something Great</h2>
+    <p class="section-sub">Tell us about your infrastructure challenges. We'll respond within one business day.</p>
+  </div>
+
+  <div class="contact-grid">
+
+    <div class="contact-info reveal">
+      <div class="contact-card">
+        <div class="contact-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <div class="contact-card-label">Email</div>
+          <div class="contact-card-value"><a href="mailto:hello@cloudops.agency">hello@cloudops.agency</a></div>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.82 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <div>
+          <div class="contact-card-label">Phone / WhatsApp</div>
+          <div class="contact-card-value"><a href="tel:+923137987137">+92 313 798 7137</a></div>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <div class="contact-card-label">Location &amp; Timezone</div>
+          <div class="contact-card-value">Pakistan · UTC+5 · Remote-First</div>
+        </div>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div>
+          <div class="contact-card-label">Availability</div>
+          <div class="contact-card-value">Currently accepting new projects</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="formWrap" class="contact-form-wrap reveal reveal-delay-1">
+      <h3>Send Us a Message</h3>
+      <p>Fill in the details below and we'll get back to you within 24 hours.</p>
+
+      <form id="contactForm" action="https://formspree.io/f/xykbgoqj" method="POST" novalidate>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full Name *</label>
+            <input type="text" id="name" name="name" placeholder="John Smith" data-required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="email">Work Email *</label>
+            <input type="email" id="email" name="email" placeholder="john@company.com" data-required autocomplete="email">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="company">Company *</label>
+            <input type="text" id="company" name="company" placeholder="Acme Corp" data-required>
+          </div>
+          <div class="form-group">
+            <label for="budget">Monthly Budget</label>
+            <select id="budget" name="budget">
+              <option value="">Select range…</option>
+              <option>Under $2,500</option>
+              <option>$2,500 – $6,000</option>
+              <option>$6,000 – $15,000</option>
+              <option>$15,000+</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="service">Service of Interest</label>
+          <select id="service" name="service">
+            <option value="">Select a service…</option>
+            <option>Cloud Infrastructure</option>
+            <option>Kubernetes & Containers</option>
+            <option>CI/CD Pipelines</option>
+            <option>Monitoring & Observability</option>
+            <option>Security & Compliance</option>
+            <option>Platform Engineering</option>
+            <option>Not sure — need a consultation</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message *</label>
+          <textarea id="message" name="message" placeholder="Describe your infrastructure challenge or goal…" data-required></textarea>
+        </div>
+        <button type="submit" id="submitBtn" class="btn-submit">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          Send Message
+        </button>
+      </form>
+    </div>
+
+    <div id="formSuccess" class="form-success">
+      <span class="success-icon">✅</span>
+      Message sent successfully!<br>We'll get back to you within one business day.
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer role="contentinfo">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#hero" class="nav-logo" aria-label="CloudOps Agency home">
+          <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+            <rect width="32" height="32" rx="8" fill="#2563eb"/>
+            <path d="M7 19.5C5.07 19.5 3.5 17.93 3.5 16S5.07 12.5 7 12.5c.3 0 .6.04.88.1C8.5 10.7 10.12 9.5 12 9.5c.87 0 1.67.28 2.32.74C15.07 9.1 16.24 8.5 17.56 8.5c2.18 0 3.94 1.76 3.94 3.94 0 .2-.02.4-.05.59C23.5 13.42 25 15.08 25 17.06 25 19.24 23.24 21 21.06 21H7v-1.5z" fill="white"/>
+            <rect x="14" y="19" width="2" height="7" rx="1" fill="white"/>
+            <rect x="10" y="23" width="10" height="2" rx="1" fill="white"/>
+          </svg>
+          Cloud<span>Ops</span>
+        </a>
+        <p>Enterprise DevOps and cloud infrastructure, built to scale with your business.</p>
+        <div class="footer-socials">
+          <a href="https://linkedin.com/company/cloudops-agency" class="social-btn" aria-label="LinkedIn" target="_blank" rel="noopener">in</a>
+          <a href="https://github.com/cloudops-agency"           class="social-btn" aria-label="GitHub"   target="_blank" rel="noopener">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.79 23.4c.6.1.83-.26.83-.57v-2.2c-3.34.72-4.04-1.61-4.04-1.61-.54-1.39-1.33-1.76-1.33-1.76-1.09-.74.08-.73.08-.73 1.2.09 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.65 1.66.24 2.88.12 3.18a4.65 4.65 0 0 1 1.23 3.22c0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .31.2.69.82.57A12 12 0 0 0 12 .3"/></svg>
+          </a>
+          <a href="https://twitter.com/cloudopsagency"  class="social-btn" aria-label="Twitter"  target="_blank" rel="noopener">𝕏</a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Cloud Infrastructure</a></li>
+          <li><a href="#services">Kubernetes</a></li>
+          <li><a href="#services">CI/CD Pipelines</a></li>
+          <li><a href="#services">Monitoring</a></li>
+          <li><a href="#services">Security</a></li>
+          <li><a href="#services">Platform Engineering</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Case Studies</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 CloudOps Agency. All rights reserved.</p>
+      <div class="footer-bottom-links">
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+        <a href="mailto:hello@cloudops.agency">hello@cloudops.agency</a>
+      </div>
+    </div>
+  </div>
 </footer>
 
-<script>
+<!-- ── BACK TO TOP ─────────────────────────────────────────── -->
+<button id="backTop" class="back-top" aria-label="Back to top">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
 
-/* HERO ANIMATION */
-window.onload = () => {
-  document.getElementById("heroTitle").style.opacity = 1;
-  document.getElementById("heroTitle").style.transform = "translateY(0)";
-  
-  setTimeout(()=>{
-    document.getElementById("heroText").style.opacity = 1;
-    document.getElementById("heroText").style.transform = "translateY(0)";
-  },300);
-};
-
-/* SCROLL REVEAL */
-const sections = document.querySelectorAll(".section");
-
-window.addEventListener("scroll", ()=>{
-  sections.forEach(sec=>{
-    if(sec.getBoundingClientRect().top < window.innerHeight - 100){
-      sec.classList.add("show");
-    }
-  });
-});
-
-/* FORM FIX */
-const form = document.getElementById("contactForm");
-const msg = document.getElementById("successMsg");
-
-form.addEventListener("submit", async (e)=>{
-  e.preventDefault();
-
-  const data = new FormData(form);
-
-  const res = await fetch(form.action,{
-    method:"POST",
-    body:data,
-    headers:{'Accept':'application/json'}
-  });
-
-  if(res.ok){
-    msg.style.display="block";
-    form.reset();
-  }else{
-    alert("Error sending message");
-  }
-});
-
-</script>
+<!-- ── SCRIPTS ─────────────────────────────────────────────── -->
+<script src="js/main.js"></script>
 
 </body>
 </html>
